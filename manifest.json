@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Smart Form Autofill Extension",
+    "version": "1.0",
+    "description": "Automatically fills forms with similarity-based suggestions.",
+    "permissions": ["scripting", "storage", "activeTab"],
+    "icons": {
+        "256": "icons/AIicon256x256.png"
+      },
+        "action": {
+            "default_popup": "index.html",
+            "default_title": "Fill forms"
+    },
+    "background": {
+      "service_worker": "js/background.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["content-scripts/content.js"],
+          "run_at": "document_idle"
+        }],
+    "web_accessible_resources": [
+        {
+          "resources": ["js/*, css/*"],
+          "matches": ["<all_urls>"]
+        }
+    ]
+  }

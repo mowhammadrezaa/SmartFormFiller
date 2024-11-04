@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Smart Form Auto-Filler</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body class="p-4">
+    <section class="section">
+      <div class="container">
+        <nav class="tabs is-boxed">
+          <ul>
+            <li class="is-active" data-tab="auto-filler-tab"><a><i class="fas fa-robot"></i> Auto-Filler</a></li>
+            <li data-tab="api-key-tab"><a><i class="fas fa-key"></i> API Key</a></li>
+            <li data-tab="settings-tab"><a><i class="fas fa-cog"></i> Settings</a></li>
+            <li data-tab="config-tab"><a><i class="fas fa-file-alt"></i> Config</a></li>
+          </ul>
+        </nav>
+        <div id="auto-filler-tab" class="tab-content is-hidden">
+          <h2 class="title is-4"><i class="fas fa-robot"></i> Smart Form Auto-Filler</h2>
+          <div class="field">
+            <div class="control">
+              <button class="button is-link" type="button" id="fill-form-button"><strong>Fill the Form</strong></button>
+            </div>
+          </div>
+        </div>
+        <div id="api-key-tab" class="tab-content">
+          <h2 class="title is-4"><i class="fas fa-key"></i> Enter OpenAI API Key</h2>
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" id="api-key-input" placeholder="Enter your API key">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary" type="button" id="save-api-button">Save API Key</button>
+            </div>
+          </div>
+        </div>
+        <div id="settings-tab" class="tab-content is-hidden">
+          <h3 class="title is-5"><i class="fas fa-cog"></i> Settings</h3>
+          <div id="editable-section" class="box">
+            <h3 class="title is-5"><i class="fas fa-user"></i> Personal information:</h3>
+            <div id="editable-container" class="mb-4"></div>
+            <div class="buttons">
+              <button class="button is-info is-small" type="button" id="add-textarea">Add Prompt</button>
+              <button class="button is-success is-small" type="button" id="save-prompt">Save Prompts</button>
+            </div>
+          </div>
+        </div>
+        <div id="config-tab" class="tab-content is-hidden">
+          <h3 class="title is-5"><i class="fas fa-file-alt"></i> Current config:</h3>
+          <div id="configContainer" class="box"></div>
+          <div class="buttons">
+            <button class="button is-warning is-small" type="button" id="add-field">Add Field</button>
+            <button class="button is-success is-small" type="button" id="save-config">Save Config</button>
+          </div>
+          <div id="log" class="content is-small has-text-grey"></div>
+        </div>
+      </div>
+    </section>
+    <script src="js/popup.js" defer></script>
+  </body>
+</html>
