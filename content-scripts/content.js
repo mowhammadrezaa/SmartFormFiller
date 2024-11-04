@@ -137,11 +137,6 @@ async function askGPT(absentInConfig, prompts) {
             {
                 role: "user",
                 content: generatePrompt(prompts, absentInConfig)
-                // "You are given a form in a dictionary format. Your task is to fill the form with answers. If a value in the dictionary is list, treat it as a dropdown menu and select one of the elements as your answer. Please provide values for the following fields:\n" +
-                // JSON.stringify(absentInConfig) +
-                // "\nPresent the completed form in the same dictionary format. " +
-                // "If you see multiple inputs with radio type, check if their question is the same, always select one of them as true. Here are some data and guidelines you must attend while filling the form:\n" +
-                // prompts.join("\n"),
             },
             ],
         }),
