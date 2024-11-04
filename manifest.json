@@ -8,8 +8,8 @@
         "256": "icons/AIicon256x256.png"
       },
         "action": {
-            "default_popup": "index.html",
-            "default_title": "Fill forms"
+            "default_popup": "popup.html",
+            "default_title": "Smart Form Autofill"
     },
     "background": {
       "service_worker": "js/background.js"
