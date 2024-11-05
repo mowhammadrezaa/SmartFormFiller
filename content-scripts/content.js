@@ -117,20 +117,33 @@ async function askGPT(absentInConfig, prompts) {
         typeof absentInConfig !== "undefined" &&
         Object.keys(absentInConfig).length > 0
     ) {
-        const apiUrl = "https://api.openai.com/v1/chat/completions"; // OpenAI API URL
+      const openApiUrl = "https://api.openai.com/v1/chat/completions"; // OpenAI API URL
+      const ollamaApiUrl = "http://localhost:11434/v1/chat/completions"; // Ollama API URL
+      // notes on ollama, need to allow all origins
+      // macos: launchctl setenv OLLAMA_ORIGINS "*" https://github.com/ollama/ollama/issues/4115#issuecomment-2254177024
+      // others: https://medium.com/dcoderai/how-to-handle-cors-settings-in-ollama-a-comprehensive-guide-ee2a5a1beef0
         const apiKey = await getApiKey(); // Fetch API key from storage
         if (!apiKey) {
         console.error("API key is missing. Please configure it properly.");
         return {};
         }
+        var apiUrl = openApiUrl
+        if (apiKey === "ollama") {
+          console.log("Using Ollama API");
+          apiUrl = ollamaApiUrl;
+        }
         const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${apiKey}`,
+
         },
-        body: JSON.stringify({
-            model: "gpt-4o-mini",
+          body: JSON.stringify({
+            // TODO: make configurable
+            // for ollama it needs to be model user pulled already.
+            // ollama pull <model>
+            model: "llama3.1:latest",
             response_format: { type: "json_object" },
             messages: [
             // { role: "system", content: "Your answer must be in JSON format." },
